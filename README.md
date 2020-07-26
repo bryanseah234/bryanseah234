@@ -18,5 +18,5 @@
   <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=infinity-tabs-code&show_icons=true&theme=monokai" />
 </a>
 
-<br>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bryanseah234&show_icons=true&theme=monokai" >
+
+<p>Some text here<br/><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bryanseah234&show_icons=true&theme=monokai" /></p>
