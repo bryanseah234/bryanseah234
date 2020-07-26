@@ -1,5 +1,2 @@
-![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234)](https://github.com/anuraghazra/github-readme-stats)
-![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234&hide=contribs,prs])
-![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234&count_private=true)
-![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234&show_icons=true)
-![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234&show_icons=true&theme=radical)
+![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234)]
+![Bryanseah234's github stats](https://github-readme-stats.vercel.app/api?username=bryanseah234&show_icons=true&theme=radical&count_private=true&hide=contribs,prs)
