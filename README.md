@@ -18,6 +18,6 @@
   <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=infinity-tabs-code&show_icons=true&theme=monokai" />
 </a>
 
-<a href="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=check-nric-code&show_icons=true&theme=monokai">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=check-nric-code&show_icons=true&theme=monokai" />
+<a href="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=singapore-nric-code&show_icons=true&theme=monokai">
+  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=singapore-nric-code&show_icons=true&theme=monokai" />
 </a>
