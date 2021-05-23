@@ -9,7 +9,7 @@ photographer • tech geek • video creator • student
 - 🌱 I’m currently learning Flask
 - 👯 I’m looking to collaborate on literally anything
 - 💬 Ask me about anything on telegram
-- 📫 How to reach me: *@bryanseah234*
+- 📫 How to reach me: [*@bryanseah234*](https://t.me/bryanseah234)
 - ⚡ Fun fact: I love cats *meow*
 <br />
 <br />
