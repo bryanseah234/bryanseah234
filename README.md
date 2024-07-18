@@ -11,11 +11,14 @@ photographer • tech geek • video creator • student
 - 💬 Ask me about anything on telegram
 - 📫 How to reach me: [*@bryanseah234*](https://t.me/bryanseah234)
 - ⚡ Fun fact: I love cats *meow*
-<br />
-<br />
-<br />
 
+<!---
+<br />
+<br />
+<br />
+--->
 
+<!---
 <a href="https://github-readme-stats.vercel.app/api?username=bryanseah234&show_icons=true&theme=monokai&count_private=true">
   <img align="left" src="https://github-readme-stats.vercel.app/api?username=bryanseah234&show_icons=true&theme=monokai&count_private=true" />
 </a>
@@ -39,3 +42,4 @@ photographer • tech geek • video creator • student
 <a href="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=singapore-nric-code&show_icons=true&theme=monokai">
   <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=bryanseah234&repo=singapore-nric-code&show_icons=true&theme=monokai" />
 </a>
+--->
