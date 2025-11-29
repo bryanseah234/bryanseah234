@@ -1,5 +1,3 @@
-
-
 ## About me:
 - 🔭 I'm currently working on my [website](https://www.hong-yi.me)
 - 🌱 I'm currently learning JavaScript
@@ -13,7 +11,3 @@
 ## License
 
 MIT License
-
----
-
-**Author:** <a href="https://github.com/bryanseah234">bryanseah234</a>
