@@ -5,4 +5,4 @@ Seah also picked up filming and creates videos regularly too. He keeps his conte
 
 Apart from the pictures and videos he uploads, Seah is also secretly a tech geek. He loves immersing himself in the latest tech and learn how they work. He is learning Python and loves to code.
 
-Lastly, he is the founder of Prawn Productions on Facebook and YouTube. Also, check out his Instagram @shotsbyseah234.
+Lastly, he is the founder of Prawn Productions on Facebook and YouTube.
