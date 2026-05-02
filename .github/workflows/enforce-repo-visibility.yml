@@ -1,0 +1,143 @@
+name: Enforce Repo Visibility
+
+# Runs:
+#   - On a schedule (daily) to catch any drift
+#   - On workflow_dispatch for an immediate manual sweep
+#   - When a repository is created or made public (catches new repos instantly)
+#
+# Rules:
+#   - Repos with "theprawn" in the name → public
+#   - All other repos you own → private
+#   - Archived repos → visibility unchanged (archived status preserved)
+#
+# Required secret: GH_PAT (classic PAT with `repo` scope)
+
+on:
+  schedule:
+    # Daily at 02:00 UTC
+    - cron: "0 2 * * *"
+
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run — log changes without applying them"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+  # Fires when any repo in the account is created or flipped to public
+  repository:
+    types: [created, publicized]
+
+permissions: read-all
+
+jobs:
+  enforce-visibility:
+    name: Enforce visibility rules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determine dry-run mode
+        id: mode
+        run: |
+          # workflow_dispatch exposes the input; other triggers default to false
+          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
+          echo "dry_run=$DRY_RUN" >> "$GITHUB_OUTPUT"
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "🔍 DRY RUN — no changes will be applied."
+          else
+            echo "🚀 LIVE RUN — changes will be applied."
+          fi
+
+      - name: Enforce visibility on all owned repos
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          DRY_RUN: ${{ steps.mode.outputs.dry_run }}
+        run: |
+          set -euo pipefail
+
+          OWNER="${{ github.repository_owner }}"
+          echo "Owner: $OWNER"
+          echo "---"
+
+          # Fetch all repos owned by this account (not org repos, not forks you don't own)
+          # gh repo list returns repos you own; --limit 1000 covers most accounts
+          repos=$(gh repo list "$OWNER" \
+            --json name,isPrivate,isArchived,isTemplate \
+            --limit 1000)
+
+          total=$(echo "$repos" | jq length)
+          made_private=0
+          made_public=0
+          skipped_archived=0
+          already_correct=0
+
+          echo "Found $total repos."
+          echo "---"
+
+          while IFS= read -r repo_json; do
+            name=$(echo "$repo_json"    | jq -r '.name')
+            is_private=$(echo "$repo_json"  | jq -r '.isPrivate')
+            is_archived=$(echo "$repo_json" | jq -r '.isArchived')
+
+            full_name="$OWNER/$name"
+
+            # ── Skip archived repos — never touch their visibility ──────────
+            if [ "$is_archived" = "true" ]; then
+              echo "⏭️  SKIP (archived): $full_name"
+              skipped_archived=$((skipped_archived + 1))
+              continue
+            fi
+
+            # ── Determine target visibility ─────────────────────────────────
+            # Repo name contains "theprawn" (case-insensitive) → public
+            if echo "$name" | grep -qi "theprawn"; then
+              target_visibility="public"
+            else
+              target_visibility="private"
+            fi
+
+            # ── Check if already correct ────────────────────────────────────
+            if [ "$target_visibility" = "private" ] && [ "$is_private" = "true" ]; then
+              echo "✅ OK (already private): $full_name"
+              already_correct=$((already_correct + 1))
+              continue
+            fi
+
+            if [ "$target_visibility" = "public" ] && [ "$is_private" = "false" ]; then
+              echo "✅ OK (already public): $full_name"
+              already_correct=$((already_correct + 1))
+              continue
+            fi
+
+            # ── Apply change ────────────────────────────────────────────────
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "🔍 DRY RUN — would set $full_name → $target_visibility"
+            else
+              echo "🔧 Setting $full_name → $target_visibility"
+              gh repo edit "$full_name" --visibility "$target_visibility"
+            fi
+
+            if [ "$target_visibility" = "private" ]; then
+              made_private=$((made_private + 1))
+            else
+              made_public=$((made_public + 1))
+            fi
+
+          done < <(echo "$repos" | jq -c '.[]')
+
+          echo "---"
+          echo "Summary:"
+          echo "  Total repos:      $total"
+          echo "  Already correct:  $already_correct"
+          echo "  Skipped (archived): $skipped_archived"
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "  Would make private: $made_private"
+            echo "  Would make public:  $made_public"
+          else
+            echo "  Made private:     $made_private"
+            echo "  Made public:      $made_public"
+          fi
