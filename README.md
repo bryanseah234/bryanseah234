@@ -1,11 +1,11 @@
-# bryanseah234
+# theprawnorganisation
 
 ## About
-Bryan is a builder and breaker of systems. Cybersecurity and Applied AI mostly. Photography and Filming the rest of the time.
+The Prawn Organisation is a builder and breaker of systems. Cybersecurity and Applied AI mostly. Photography and Filming the rest of the time.
 
 ## Project Status
 
-bryanseah234 project pending fuller documentation and setup notes. This pass standardises repository hygiene without inventing live deployment details or showcase assets.
+theprawnorganisation project pending fuller documentation and setup notes. This pass standardises repository hygiene without inventing live deployment details or showcase assets.
 
 ## Setup
 
@@ -18,3 +18,4 @@ Review the source tree for current commands. Add exact deployment and demo detai
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
